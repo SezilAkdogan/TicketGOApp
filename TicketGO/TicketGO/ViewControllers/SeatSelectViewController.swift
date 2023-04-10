@@ -28,20 +28,19 @@ class SeatSelectViewController: UIViewController {
     @IBOutlet weak var passengerID: UITextField!
     
     
-    var goTicketInfoDate = TicketDate()
-    var goTicketClock = Clock()
+    // var goTicketInfoDate = TicketDate()
+    //var goTicketClock = Clock()
     
     var passenger: Passenger?
-    var ticket: Ticket?
+    //var ticket: Ticket?
     var selectedChairCount = 0
     var selectedChairs = [Int]()
     var soldChairs = [Int]()
-        
-    let userDefault = UserDefaults.standard
-    
-    
     //Aktarım
     var selectedInfo: TicketSelectModel?
+    
+    let userDefault = UserDefaults.standard
+    
     
     
     override func viewDidLoad() {
@@ -52,20 +51,16 @@ class SeatSelectViewController: UIViewController {
         seatCollectionView.delegate = self
         seatCollectionView.dataSource = self
 
-            
        // configReserveButton()
         soldChairs = userDefault.array(forKey: "soldChairs") as? [Int] ?? [Int]()
             
-        stackView.layer.cornerRadius = 15
+        //stackView.layer.cornerRadius = 15
         selectedImg.image = UIImage(named: "selected")
         soldImg.image = UIImage(named: "sold")
         availableImg.image = UIImage(named: "seatImg")
         
-            
     }
        
-   
-        
     func createSeats() -> UICollectionViewLayout {
         let seatSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(1.0))
             
@@ -80,7 +75,6 @@ class SeatSelectViewController: UIViewController {
         let leftSideGroup = NSCollectionLayoutGroup.horizontal(layoutSize: leftSideGroupSize, subitem: item, count: 1)
             
         let wholeSeatsGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(80))
-            
             
         let wholeSeatsGroup = NSCollectionLayoutGroup.horizontal(layoutSize: wholeSeatsGroupSize, subitems: [leftSideGroup, rightSideGroup])
             
@@ -113,28 +107,19 @@ class SeatSelectViewController: UIViewController {
                 present(alert, animated: true, completion: nil)
                 
             } else {
-                
                 let passenger = Passenger(name: passengerName.text!, surname: passengerSurname.text!, id: Int(passengerID.text!)!)
                 
-               // let ticket = Ticket(passenger: passenger, date: goTicketInfoDate, clock: goTicketClock)
-                
-               
                 //guard let price = selectedInfo?.price else { return }
                 controller.fromLabelText = selectedInfo?.fromCity
                 controller.toLabelText = selectedInfo?.toCity
                 controller.dateLabelText = selectedInfo?.time
                 controller.reservedSeatLabelText = String(selectedChairs.count)
-               // controller.priceLabelText = selectedInfo?.price
+                controller.clockLabelText = selectedInfo?.ticketClock
                 controller.priceLabelText = String(selectedChairs.count * (Int(selectedInfo?.price ?? "") ?? 0))
                 controller.selectedSeatsText = selectedChairs
-             //controller.totalPriceText = seatNumbers
                 controller.passengerInfo = passenger
                 controller.modalPresentationStyle = .fullScreen
                 controller.modalTransitionStyle = .crossDissolve
-                //controller.ticket = ticket
-                //controller.ticket?.selectedChairCount = selectedChairs.count
-                //controller.ticket?.selectedChairs = selectedChairs
-                
                 
                 navigationController?.pushViewController(controller, animated: true)
                 
@@ -144,15 +129,9 @@ class SeatSelectViewController: UIViewController {
         
     }
     
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? TicketInformationViewController {
-            destination.passengerInfoLabel = (presentingViewController as? SeatSelectViewController )?.passengerName.text
-        }
-    }*/
-
+  
 }
-    //MARK: Delegate, Data Source
+//MARK: Delegate, Data Source
 extension SeatSelectViewController: UICollectionViewDelegate, UICollectionViewDataSource  {
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -177,30 +156,17 @@ extension SeatSelectViewController: UICollectionViewDelegate, UICollectionViewDa
         
         // Koltuk seçili ise arka planını değiştir
         if selectedChairs.contains(indexPath.row) {
-            cell.seatImg.image = UIImage(named: "seatImg")
-            cell.backgroundColor = UIColor.green
-        } else {
             cell.seatImg.image = UIImage(named: "sold")
-            cell.backgroundColor = UIColor.gray
+        } else {
+            cell.seatImg.image = UIImage(named: "seatImg")
         }
-        
         cell.seatNumber.text = "\(indexPath.row + 1)"
         return cell
-        
-        
         
     }
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected Seat: ", indexPath.row)
-        
-        
-        
-    /*    var seatNumbers: [Int] = []
-        let cell = collectionView.cellForItem(at: indexPath) as! SeatCollectionViewCell
-        let seatNumber = Int(cell.seatNumber.text!)!
-        seatNumbers.append(seatNumber)
-        */
         
         if selectedChairs.contains(indexPath.row) {
             if let index = selectedChairs.firstIndex(of: indexPath.row) {
@@ -208,7 +174,7 @@ extension SeatSelectViewController: UICollectionViewDelegate, UICollectionViewDa
                
             }
         } else {
-                    // Kontrol ekle
+            // Kontrol ekle
             if selectedChairs.count >= 5 {
                 let alert = UIAlertController(title: "Error", message: "You can't choose more than 5 seats", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

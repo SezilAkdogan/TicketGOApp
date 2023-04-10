@@ -28,8 +28,8 @@ class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         slides.append(OnboardingSlide(title: "Welcome to TicketGO", description: "Thank you for choosing to travel with us. With our TicketGO, you can easily search for bus tickets and make reservations.", image:UIImage(named: "welcome")!))
-        slides.append(OnboardingSlide(title: "Easy Search", description: "Searching for TicketGO is very easy! Simply select the cities and dates you want to travel, and then view all the options with just a few taps.", image: UIImage(named: "location")!))
-        slides.append(OnboardingSlide(title: "TicketGO: Simplify Your Travels", description: "Start using TicketGO now!", image: UIImage(named: "start")!))
+        slides.append(OnboardingSlide(title: "Easy Search", description: "Searching for TicketGO is very easy! Simply select the cities and dates you want to travel, and then view all the options with just a few taps.", image: UIImage(named: "onboardingSecond")!))
+        slides.append(OnboardingSlide(title: "TicketGO: Simplify Your Travels", description: "Start using TicketGO now!", image: UIImage(named: "onboardingLast")!))
         // Do any additional setup after loading the view.
     }
     

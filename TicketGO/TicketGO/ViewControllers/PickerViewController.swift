@@ -45,47 +45,45 @@ class PickerViewController: UIViewController {
             fromCity: selectedFromCity,
             toCity: selectedToCity,
             time: date,
-            ticketClock: "11.00",
+            ticketClock: "11:00",
             price: "300"),
         TicketSelectModel(
             companyImage: UIImage(named: "truva")!,
             fromCity: selectedFromCity,
             toCity: selectedToCity,
             time: date,
-            ticketClock: "12.30",
+            ticketClock: "12:30",
             price: "200"),
         TicketSelectModel(
-            companyImage: UIImage(named: "truva")!,
+            companyImage: UIImage(named: "ulusoy")!,
             fromCity: selectedFromCity,
             toCity: selectedToCity,
             time: date,
-            ticketClock: "13.00",
+            ticketClock: "13:00",
             price: "100"),
         TicketSelectModel(
-            companyImage: UIImage(named: "truva")!,
+            companyImage: UIImage(named: "varan")!,
             fromCity: selectedFromCity,
             toCity: selectedToCity,
             time: date,
-            ticketClock: "14.30",
+            ticketClock: "14:30",
             price: "150"),
          TicketSelectModel(
-            companyImage: UIImage(named: "truva")!,
+            companyImage: UIImage(named: "nilüfer")!,
             fromCity: selectedFromCity,
             toCity: selectedToCity,
             time: date,
-            ticketClock: "15.00",
+            ticketClock: "15:00",
             price: "300"),
         TicketSelectModel(
             companyImage: UIImage(named: "truva")!,
             fromCity: selectedFromCity,
             toCity: selectedToCity,
             time: date,
-            ticketClock: "16.30",
+            ticketClock: "16:30",
             price: "200")
         ]
     
-        
-
        navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -116,11 +114,6 @@ extension PickerViewController: UIPickerViewDelegate ,UIPickerViewDataSource {
         }
     }
     
- /*   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? TicketSelectViewController {
-            destination.selectedDate = (presentingViewController as? PickerViewController )?.selectedDate
-        }
-    }
-    */
+ 
 }
 

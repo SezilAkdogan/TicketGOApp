@@ -16,6 +16,7 @@ class TicketInformationViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var passengerInfoLabel: UILabel!
     
+    @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var reservedSeatsLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var totalPrice: UILabel!
@@ -34,16 +35,18 @@ class TicketInformationViewController: UIViewController {
     var priceLabelText: String?
     var selectedSeatsText: [Int] = []
     var stringSeat: String = ""
+    var clockLabelText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fromLabel.text = fromLabelText
-        toLabel.text = toLabelText
+        fromLabel.text = fromLabelText?.uppercased()
+        toLabel.text = toLabelText?.uppercased()
         dateLabel.text = dateLabelText
+        clockLabel.text = clockLabelText
         reservedSeatsLabel.text = reservedSeatLabelText
-        priceLabel.text = priceLabelText
-        passengerInfoLabel.text = "\(passengerInfo.name) \(passengerInfo.surname) \(passengerInfo.id)"
+        priceLabel.text = (priceLabelText ?? "") + "₺"
+        passengerInfoLabel.text = "\(passengerInfo.name.uppercased()) \(passengerInfo.surname.uppercased()) \(passengerInfo.id)"
         for seat in selectedSeatsText {
             stringSeat += String(seat + 1) + ", "
         }

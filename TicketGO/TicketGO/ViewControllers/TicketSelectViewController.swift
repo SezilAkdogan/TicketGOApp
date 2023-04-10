@@ -19,6 +19,9 @@ class TicketSelectViewController: UIViewController {
         super.viewDidLoad()
         
         configureTableView()
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = UIColor.systemYellow
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
     }
     
     private func configureTableView() {
