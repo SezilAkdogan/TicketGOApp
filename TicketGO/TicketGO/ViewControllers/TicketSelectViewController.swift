@@ -44,7 +44,7 @@ extension TicketSelectViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
-       let  controller = storyboard?.instantiateViewController(withIdentifier: "SeatSelectViewController") as! SeatSelectViewController
+       let controller = storyboard?.instantiateViewController(withIdentifier: "SeatSelectViewController") as! SeatSelectViewController
         let selectInformation = company[indexPath.row]
         controller.selectedInfo = selectInformation
        navigationController?.pushViewController(controller, animated: true)

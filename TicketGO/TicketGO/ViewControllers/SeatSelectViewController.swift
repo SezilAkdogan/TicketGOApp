@@ -27,12 +27,7 @@ class SeatSelectViewController: UIViewController {
     @IBOutlet weak var passengerSurname: UITextField!
     @IBOutlet weak var passengerID: UITextField!
     
-    
-    // var goTicketInfoDate = TicketDate()
-    //var goTicketClock = Clock()
-    
     var passenger: Passenger?
-    //var ticket: Ticket?
     var selectedChairCount = 0
     var selectedChairs = [Int]()
     var soldChairs = [Int]()
@@ -101,7 +96,7 @@ class SeatSelectViewController: UIViewController {
             userDefault.set(soldChairs, forKey: "soldChairs")
             let controller = storyboard?.instantiateViewController(withIdentifier: "TicketInformationViewController") as! TicketInformationViewController
            
-            if passengerName.text!.isEmpty && passengerSurname.text!.isEmpty && passengerID.text!.isEmpty {
+            if passengerName.text!.isEmpty || passengerSurname.text!.isEmpty || passengerID.text!.isEmpty {
                 let alert = UIAlertController(title: "Error", message: "You must enter passenger information ", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
@@ -129,7 +124,6 @@ class SeatSelectViewController: UIViewController {
         
     }
     
-  
 }
 //MARK: Delegate, Data Source
 extension SeatSelectViewController: UICollectionViewDelegate, UICollectionViewDataSource  {
@@ -143,16 +137,15 @@ extension SeatSelectViewController: UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.reuseIdentifier, for: indexPath) as! SeatCollectionViewCell
         cell.configure(with: indexPath.row)
         
-     /*
-        if soldChairs.contains(indexPath.row + 1){
-            cell.tintColor = .lightGray
-            cell.seatImg.image = UIImage(named: "seatImg")
-            cell.isUserInteractionEnabled = false
-            cell.isThisChairSold = true
+     
+       /* if soldChairs.contains(indexPath.row + 1){
+            //cell.tintColor = .lightGray
+            cell.seatImg.image = UIImage(named: "selected")
+            //cell.isThisChairSold = true
         } else {
             cell.seatImg.image = UIImage(named: "sold")
-        }
-          */
+        }*/
+          
         
         // Koltuk seçili ise arka planını değiştir
         if selectedChairs.contains(indexPath.row) {

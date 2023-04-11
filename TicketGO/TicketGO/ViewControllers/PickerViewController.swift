@@ -9,29 +9,38 @@ import UIKit
 
 class PickerViewController: UIViewController {
     
+    //var model: [TicketSelectModel] = []
+    //var secondModel = TicketDate()
+    //var thirdModel = Clock()
     let cities = ["Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın", "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari", "Hatay", "Iğdır", "Isparta", "İstanbul", "İzmir", "Kahramanmaraş", "Karabük", "Karaman", "Kars", "Kastamonu", "Kayseri", "Kırıkkale", "Kırklareli", "Kırşehir", "Kilis", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Mardin", "Mersin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak", "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"]
     var selectedFromCity: String?
     var selectedToCity: String?
-    var selectedCity: String?
-
+   
+    var fromCityPickerView = UIPickerView()
+    var toCityPickerView = UIPickerView()
+    
+    @IBOutlet weak var fromCityTextField: UITextField!
+    @IBOutlet weak var toCityTextField: UITextField!
+    
     var selectedDate: Date?
     let dateFormatter = DateFormatter()
-
-    
-    var model: [TicketSelectModel] = []
-    var secondModel = TicketDate()
-    var thirdModel = Clock()
    
-    @IBOutlet weak var fromCityPickerView: UIPickerView!
-    @IBOutlet weak var toCityPickerView: UIPickerView!
     @IBOutlet weak var datePickerOulet: UIDatePicker!
-    
     @IBAction func datePicker(_ sender: UIDatePicker) {
         selectedDate = sender.date
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fromCityTextField.inputView = fromCityPickerView
+        toCityTextField.inputView = toCityPickerView
+        fromCityPickerView.delegate = self
+        fromCityPickerView.dataSource = self
+        toCityPickerView.delegate = self
+        toCityPickerView.dataSource = self
+        fromCityPickerView.tag = 1
+        toCityPickerView.tag = 2
 
     }
     
@@ -81,7 +90,21 @@ class PickerViewController: UIViewController {
             toCity: selectedToCity,
             time: date,
             ticketClock: "16:30",
-            price: "200")
+            price: "350"),
+         TicketSelectModel(
+            companyImage: UIImage(named: "nilüfer")!,
+            fromCity: selectedFromCity,
+            toCity: selectedToCity,
+            time: date,
+            ticketClock: "19:00",
+            price: "250"),
+         TicketSelectModel(
+            companyImage: UIImage(named: "metro")!,
+            fromCity: selectedFromCity,
+            toCity: selectedToCity,
+            time: date,
+            ticketClock: "20:30",
+            price: "200"),
         ]
     
        navigationController?.pushViewController(controller, animated: true)
@@ -95,25 +118,41 @@ extension PickerViewController: UIPickerViewDelegate ,UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return cities.count
+        switch pickerView.tag {
+        case 1:
+            return cities.count
+        case 2:
+            return cities.count
+        default:
+            return 1
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return cities[row]
+        switch pickerView.tag {
+        case 1:
+            return cities[row]
+        case 2:
+            return cities[row]
+        default:
+            return "Data not found!"
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        switch pickerView {
-        case toCityPickerView:
-            selectedToCity = cities[row]
-        case fromCityPickerView:
+        switch pickerView.tag {
+        case 1:
+            fromCityTextField.text = cities[row]
+            fromCityTextField.resignFirstResponder()
             selectedFromCity = cities[row]
+        case 2:
+            toCityTextField.text = cities[row]
+            toCityTextField.resignFirstResponder()
+            selectedToCity = cities[row]
         default:
             break
         }
     }
-    
- 
 }
 

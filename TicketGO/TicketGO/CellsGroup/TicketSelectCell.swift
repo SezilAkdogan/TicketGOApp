@@ -23,11 +23,9 @@ class TicketSelectCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        
     }
     
-   func configure(_ model: TicketSelectModel) {
+    func configure(_ model: TicketSelectModel) {
         companyImage.image = model.companyImage
         fromName.text = model.fromCity
         toName.text = model.toCity
