@@ -41,5 +41,11 @@ The information is obtained using Picker View and Date Picker, and the model cre
 ![1 4](https://user-images.githubusercontent.com/111681902/231450552-398a8954-3171-4eb5-8446-b0cc62eb09ac.png)
 
 
+The ticket selection screen is where the tickets are listed based on the choices made on the previous page, and the selected ticket information is transferred to the next screens. 
+
+It is designed and coded using TableView Cell.
+
+
+![2 1](https://user-images.githubusercontent.com/111681902/231451688-77c26228-b413-4cb6-9862-1de3a7768fe2.png)
 
 
