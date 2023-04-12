@@ -16,6 +16,7 @@ class SeatSelectViewController: UIViewController {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var confirmBtn: UIButton!
+    @IBOutlet weak var companyImg: UIImageView!
     @IBOutlet weak var availableImg: UIImageView!
     @IBOutlet weak var selectedImg: UIImageView!
     @IBOutlet weak var soldImg: UIImageView!
@@ -31,12 +32,9 @@ class SeatSelectViewController: UIViewController {
     var selectedChairCount = 0
     var selectedChairs = [Int]()
     var soldChairs = [Int]()
-    //Aktarım
-    var selectedInfo: TicketSelectModel?
     
+    var selectedInfo: TicketSelectModel? //Aktarım
     let userDefault = UserDefaults.standard
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +44,8 @@ class SeatSelectViewController: UIViewController {
         seatCollectionView.delegate = self
         seatCollectionView.dataSource = self
 
-       // configReserveButton()
         soldChairs = userDefault.array(forKey: "soldChairs") as? [Int] ?? [Int]()
-            
-        //stackView.layer.cornerRadius = 15
+        companyImg.image = selectedInfo?.companyImage
         selectedImg.image = UIImage(named: "selected")
         soldImg.image = UIImage(named: "sold")
         availableImg.image = UIImage(named: "seatImg")
@@ -102,6 +98,7 @@ class SeatSelectViewController: UIViewController {
                 present(alert, animated: true, completion: nil)
                 
             } else {
+               
                 let passenger = Passenger(name: passengerName.text!, surname: passengerSurname.text!, id: Int(passengerID.text!)!)
                 
                 //guard let price = selectedInfo?.price else { return }
@@ -125,7 +122,7 @@ class SeatSelectViewController: UIViewController {
     }
     
 }
-//MARK: Delegate, Data Source
+//MARK: CollectionView Delegate, Data Source
 extension SeatSelectViewController: UICollectionViewDelegate, UICollectionViewDataSource  {
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -137,19 +134,8 @@ extension SeatSelectViewController: UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.reuseIdentifier, for: indexPath) as! SeatCollectionViewCell
         cell.configure(with: indexPath.row)
         
-     
-       /* if soldChairs.contains(indexPath.row + 1){
-            //cell.tintColor = .lightGray
-            cell.seatImg.image = UIImage(named: "selected")
-            //cell.isThisChairSold = true
-        } else {
-            cell.seatImg.image = UIImage(named: "sold")
-        }*/
-          
-        
-        // Koltuk seçili ise arka planını değiştir
         if selectedChairs.contains(indexPath.row) {
-            cell.seatImg.image = UIImage(named: "sold")
+            cell.seatImg.image = UIImage(named: "sold") // Koltuk seçili ise koltuk rengini değiştir
         } else {
             cell.seatImg.image = UIImage(named: "seatImg")
         }
@@ -167,8 +153,7 @@ extension SeatSelectViewController: UICollectionViewDelegate, UICollectionViewDa
                
             }
         } else {
-            // Kontrol ekle
-            if selectedChairs.count >= 5 {
+            if selectedChairs.count >= 5 {  // Koltuk secimi sinirlandirmasi
                 let alert = UIAlertController(title: "Error", message: "You can't choose more than 5 seats", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
