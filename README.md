@@ -49,3 +49,25 @@ It is designed and coded using TableView Cell.
 ![2 1](https://user-images.githubusercontent.com/111681902/231451688-77c26228-b413-4cb6-9862-1de3a7768fe2.png)
 
 
+The seat design is created using CollectionView Cells, and alert controllers are added for selections and information filling. When the selected seats are returned, they are displayed using user defaults.
+
+
+![3](https://user-images.githubusercontent.com/111681902/231452690-d7cd05dd-612b-4867-9ea0-3aed1298a568.png)
+
+
+![3 2](https://user-images.githubusercontent.com/111681902/231452704-076f909e-dcf4-4b6f-a5bb-7f02737a542c.png)
+
+
+![3 3](https://user-images.githubusercontent.com/111681902/231452726-16b41427-d064-47ca-97e7-2bb751918490.png)
+
+
+![3 4](https://user-images.githubusercontent.com/111681902/231452760-b764bc89-e0e7-427b-a34a-e011baf57018.png)
+
+
+![3 5](https://user-images.githubusercontent.com/111681902/231452781-79fad30f-944a-4dfc-b314-47ac66d54f9a.png)
+
+
+
+
+
+
