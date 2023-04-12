@@ -69,6 +69,7 @@ The seat design is created using CollectionView Cells, and alert controllers are
 The information from the previous page is printed as a ticket.
 
 ![4](https://user-images.githubusercontent.com/111681902/231455281-9864b292-2f8c-4435-b446-30a29aa0ccee.png)
+![Filmim-1](https://user-images.githubusercontent.com/111681902/231460651-709e54fb-bee9-4bd4-a6ea-97634c1a026e.gif)
 
 
 
