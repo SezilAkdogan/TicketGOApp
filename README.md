@@ -24,6 +24,22 @@ Start using TicketGO now!
 ![Onboarding3](https://user-images.githubusercontent.com/111681902/231450197-639e120d-36ce-4e01-80a3-1f3be9439fbe.png)
 
 
+This is the screen where the destination route and date/time are entered and the information is transferred to the ticket search page. 
+
+The information is obtained using Picker View and Date Picker, and the model created with the navigation controller is transferred.
+
+
+![1 1](https://user-images.githubusercontent.com/111681902/231450498-0d5f539b-e9b3-4be2-8fc5-896d8efaa4da.png)
+
+
+![1 2](https://user-images.githubusercontent.com/111681902/231450515-dc90bd36-1ccc-45f4-b5d1-6a19e84a7c0d.png)
+
+
+![1 3](https://user-images.githubusercontent.com/111681902/231450527-86a97c6c-3f12-4edc-97fc-8d6021ae8769.png)
+
+
+![1 4](https://user-images.githubusercontent.com/111681902/231450552-398a8954-3171-4eb5-8446-b0cc62eb09ac.png)
+
 
 
 
