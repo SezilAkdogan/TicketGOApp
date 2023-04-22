@@ -1070,7 +1070,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qcd-sL-fjV">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sear" translatesAutoresizingMaskIntoConstraints="NO" id="Qcd-sL-fjV">
                                                 <rect key="frame" x="330" y="39" width="50" height="43"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="65c-Fm-wdF"/>
@@ -1210,6 +1210,7 @@
         <image name="passed" width="512" height="512"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
+        <image name="sear" width="128" height="128"/>
         <image name="yellowBus" width="107" height="100"/>
         <image name="yellowIcon" width="612" height="612"/>
         <image name="yellowbuss" width="563" height="382"/>

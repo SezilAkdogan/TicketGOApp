@@ -38,9 +38,24 @@ class PickerViewController: UIViewController {
         toCityPickerView.dataSource = self
         fromCityPickerView.tag = 1
         toCityPickerView.tag = 2
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonClickedFromPicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        doneButton.tintColor = .systemOrange
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        toolbar.setItems([spaceButton, doneButton], animated: false)
+        self.fromCityTextField.inputAccessoryView = toolbar
+        self.toCityTextField.inputAccessoryView = toolbar
 
     }
-    
+    @objc func doneButtonClickedFromPicker() {
+        self.fromCityTextField.resignFirstResponder()
+        self.toCityTextField.resignFirstResponder()
+
+    }
+
+   
     @IBAction func searchButtonTapped(_ sender: Any) {
         let controller = storyboard?.instantiateViewController(withIdentifier: "TicketSelectViewController") as! TicketSelectViewController
         dateFormatter.dateFormat = "dd/MM/YY"
@@ -103,8 +118,17 @@ class PickerViewController: UIViewController {
             ticketClock: "20:30",
             price: "200"),
         ]
-    
-       navigationController?.pushViewController(controller, animated: true)
+        if fromCityTextField.text?.isEmpty == true || toCityTextField.text?.isEmpty == true {
+            let alert = UIAlertController(title: "Error", message:"Please you must choose a city", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else if fromCityTextField.text == toCityTextField.text {
+            let alert = UIAlertController(title: "Error", message:"Departure and arrival points cannot be the same.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }else {
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
 }
@@ -141,11 +165,11 @@ extension PickerViewController: UIPickerViewDelegate ,UIPickerViewDataSource {
         switch pickerView.tag {
         case 1:
             fromCityTextField.text = cities[row]
-            fromCityTextField.resignFirstResponder()
+            //fromCityTextField.resignFirstResponder()
             selectedFromCity = cities[row]
         case 2:
             toCityTextField.text = cities[row]
-            toCityTextField.resignFirstResponder()
+            //toCityTextField.resignFirstResponder()
             selectedToCity = cities[row]
         default:
             break
